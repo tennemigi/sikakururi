@@ -5,6 +5,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Unity WebGL Player | sikakururi</title>
+    <style>
+      * 
+      {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
   </head>
   <body style="text-align: center">
     <canvas id="unity-canvas" width=540 height=960 style="width: 540px; height: 960px; background: #231F20"></canvas>
@@ -21,6 +28,20 @@
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
+    </script>
+    <script>
+      var canvas = document.getElementById("unity-canvas");
+
+      function resize()
+      {
+        canvas.style.width = document.documentElement.clientWidth + "px";
+        canvas.style.height = document.documentElement.clientHeight + "px";
+      }
+      
+      resize();
+
+      window.onresize = resize;
+
     </script>
   </body>
 </html>
