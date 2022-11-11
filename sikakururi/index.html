@@ -3,49 +3,38 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | sikakururi</title>
-    <style>
-      * 
-      {
-        margin: 0px;
-        padding: 0px;
-      }
-    </style>
+    <title>Unity WebGL Player | しかくるり</title>
   </head>
-  <body style="text-align: center">
+  <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width=540 height=960 style="width: 540px; height: 960px; background: #231F20"></canvas>
-    <script src="Build/sikakururi.loader.js"></script>
+    <script src="Build/sikakururi_WebGL.loader.js"></script>
     <script>
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+
+        var canvas = document.querySelector("#unity-canvas");
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        canvas.style.position = "fixed";
+
+        document.body.style.textAlign = "left";
+      }
+
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/sikakururi.data",
-        frameworkUrl: "Build/sikakururi.framework.js",
-        codeUrl: "Build/sikakururi.wasm",
+        dataUrl: "Build/sikakururi_WebGL.data",
+        frameworkUrl: "Build/sikakururi_WebGL.framework.js",
+        codeUrl: "Build/sikakururi_WebGL.wasm",
         streamingAssetsUrl: "StreamingAssets",
-        companyName: "muketukaijou",
-        productName: "sikakururi",
-        productVersion: "1.2",
+        companyName: "muketikaijou",
+        productName: "しかくるり",
+        productVersion: "1.4.6",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
       });
-    </script>
-    <script>
-      var canvas = document.getElementById("unity-canvas");
-
-      function resize()
-      {
-        canvas.style.height = document.documentElement.clientHeight + "px";
-        canvas.style.width = ((document.documentElement.clientHeight / 16 )* 9) + "px";
-        if (((document.documentElement.clientHeight / 16 )* 9) > document.documentElement.clientWidth)
-        {
-          canvas.style.width = document.documentElement.clientWidth + "px";
-          canvas.style.height = ((document.documentElement.clientWidth / 9 )* 16) + "px";
-        }
-      }
-      
-      resize();
-
-      window.onresize = resize;
-
     </script>
   </body>
 </html>
